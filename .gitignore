@@ -1,4 +1,6 @@
 # created by virtualenv automatically
 pyvenv.cfg
 .idea
-
+Lib
+Scripts
+.vscode
