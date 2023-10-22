@@ -30,8 +30,8 @@ def preprocess_data(dataset_df):
         pd.DataFrame: The DataFrame containing the testing data.
     """
 
-    # Filter rows based on ref_tox - trn_tox > 0.1 and similarity > 0.7
-    filtered_df = dataset_df[(dataset_df['ref_tox'] - dataset_df['trn_tox'] > 0.1) & (dataset_df['similarity'] > 0.7)]
+    # Filter rows based on ref_tox - trn_tox >= 0.5 and similarity > 0.7
+    filtered_df = dataset_df[(dataset_df['ref_tox'] - dataset_df['trn_tox'] >= 0.5) & (dataset_df['similarity'] > 0.7)]
 
     # Create another DataFrame with the remaining rows (up to 5000 rows)
     test_df = dataset_df[~dataset_df.index.isin(filtered_df.index)& (dataset_df['ref_tox'] > 0.7)].head(5000)
