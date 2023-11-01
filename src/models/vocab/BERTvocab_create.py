@@ -124,10 +124,10 @@ def evaluate_word_toxicities(corpus_tox, corpus_norm, VOCAB_DIRNAME):
     pipe.fit(X_train, y_train)
 
     coefs = pipe[1].coef_[0]
-    word2coef = {w: coefs[idx] for w, idx in pipe[0].vocabulary_.items()}
+    tox_coef = {w: coefs[idx] for w, idx in pipe[0].vocabulary_.items()}
 
-    with open(os.path.join(VOCAB_DIRNAME, 'word2coef.pkl'), 'wb') as f:
-        pickle.dump(word2coef, f)
+    with open(os.path.join(VOCAB_DIRNAME, 'tox_coef.pkl'), 'wb') as f:
+        pickle.dump(tox_coef, f)
 
 def label_bert_tokens(corpus_tox, corpus_norm, tokenizer, VOCAB_DIRNAME):
     """
@@ -152,10 +152,10 @@ def label_bert_tokens(corpus_tox, corpus_norm, tokenizer, VOCAB_DIRNAME):
         for token in tokenizer.encode(text):
             nontoxic_counter[token] += 1
 
-    token_toxicities = [toxic_counter[i] / (nontoxic_counter[i] + toxic_counter[i]) for i in range(len(tokenizer.vocab))]
+    token_tox = [toxic_counter[i] / (nontoxic_counter[i] + toxic_counter[i]) for i in range(len(tokenizer.vocab))]
 
-    with open(os.path.join(VOCAB_DIRNAME, 'token_toxicities.txt'), 'w') as f:
-        for t in token_toxicities:
+    with open(os.path.join(VOCAB_DIRNAME, 'token_tox.txt'), 'w') as f:
+        for t in token_tox:
             f.write(str(t))
             f.write('\n')
 

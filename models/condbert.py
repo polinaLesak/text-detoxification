@@ -24,8 +24,8 @@ class CondBertRewriter:
             device,
             neg_words,
             pos_words,
-            word2coef,
-            token_toxicities,
+            tox_coef,
+            token_tox,
             predictor=None,
     ):
         self.model = model
@@ -33,13 +33,13 @@ class CondBertRewriter:
         self.device = device
         self.neg_words = neg_words
         self.pos_words = pos_words
-        self.word2coef = word2coef
-        self.token_toxicities = token_toxicities
+        self.tox_coef = tox_coef
+        self.token_tox = token_tox
         self.predictor = predictor
 
         # calculated properties
         self.v = {v: k for k, v in tokenizer.vocab.items()}
-        self.device_toxicities = torch.tensor(token_toxicities).to(self.device)
+        self.device_toxicities = torch.tensor(token_tox).to(self.device)
 
         self.neg_complex_tokens = group_by_first_token(neg_words, self.tokenizer)
         self.pos_complex_tokens = group_by_first_token(pos_words, self.tokenizer)
@@ -94,7 +94,7 @@ class CondBertRewriter:
             if sum(masks[sent_id].numpy()) == 0 or aggressive:
                 scored_words = []
                 for indices, word in self.toks_to_words(sent):
-                    score = self.word2coef.get(word, 0) * (1 - 2 * label)
+                    score = self.tox_coef.get(word, 0) * (1 - 2 * label)
                     if score:
                         scored_words.append([indices, word, score])
                 if scored_words:

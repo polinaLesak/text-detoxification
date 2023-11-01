@@ -27,29 +27,25 @@ def initialize_condbert():
         s = f.readlines()
     negative_words = list(map(lambda x: x[:-1], s))
 
-    with open(VOCAB_ROOT + "toxic_words.txt", "r") as f:
-        ss = f.readlines()
-    negative_words += list(map(lambda x: x[:-1], ss))
-
     with open(VOCAB_ROOT + "positive-words.txt", "r") as f:
         s = f.readlines()
     positive_words = list(map(lambda x: x[:-1], s))
 
-    with open(VOCAB_ROOT + 'word2coef.pkl', 'rb') as f:
-        word2coef = pickle.load(f)
+    with open(VOCAB_ROOT + 'tox_coef.pkl', 'rb') as f:
+        tox_coef = pickle.load(f)
 
-    token_toxicities = []
-    with open(vocab_root + 'token_toxicities.txt', 'r') as f:
+    token_tox = []
+    with open(vocab_root + 'token_tox.txt', 'r') as f:
         for line in f.readlines():
-            token_toxicities.append(float(line))
-    token_toxicities = np.array(token_toxicities)
-    token_toxicities = np.maximum(0, np.log(1/(1/token_toxicities-1)))  # log odds ratio
+            token_tox.append(float(line))
+    token_tox = np.array(token_tox)
+    token_tox = np.maximum(0, np.log(1/(1/token_tox-1)))  # log odds ratio
 
     for tok in ['.', ',', '-']:
-        token_toxicities[tokenizer.encode(tok)][1] = 3
+        token_tox[tokenizer.encode(tok)][1] = 3
 
     for tok in ['you']:
-        token_toxicities[tokenizer.encode(tok)][1] = 0
+        token_tox[tokenizer.encode(tok)][1] = 0
 
     editor = CondBertRewriter(
         model=model,
@@ -57,8 +53,8 @@ def initialize_condbert():
         device=device,
         neg_words=negative_words,
         pos_words=positive_words,
-        word2coef=word2coef,
-        token_toxicities=token_toxicities,
+        tox_coef=tox_coef,
+        token_tox=token_tox,
     )
 
     return editor
