@@ -28,15 +28,18 @@ ref_tox - toxicity level of reference text
 ### Transforming data
 
 To download and prepare test and train datasets use this code:
+
 `python ./src/data/make_dataset.py`
 
 
 ### Making predictions
 
 To make predictions using simple vocab:
+
 `python ./src/models/vocab_predict.py`
 
 To make prediction using "smart" vocab and BERT model:
+
 `python ./src/models/condbert_predict.py`
 
 
