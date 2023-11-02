@@ -1,6 +1,4 @@
-
 FILE_PATH = "../../data/raw/filtered_paranmt.zip"
-
 PREPROCESSED_DATA = "../../data/interm/preprocessed_filtered.csv"
 TEST_DATA_PATH = "../../data/interm/test.csv"
 VOCAB_ROOT = "../../data/interm/vocab/"
@@ -10,3 +8,4 @@ VOCAB_PATH = "../../data/interm/vocab.json"
 VOCAB_PREDICT_PATH = "../../data/interm/predictVOCAB.csv"
 TOX_PATH = '../data/interm/toxic_train.csv'
 NORM_PATH = '../../data/interm/normal_train.csv'
+RESULT_PATH = "../../data/interm/result.csv"
