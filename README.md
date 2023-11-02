@@ -1,4 +1,4 @@
-# Assignment 1 - Text De-toxification
+# Text De-toxification
 
 ## Personal info
 
