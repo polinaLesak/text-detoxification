@@ -11,7 +11,7 @@ In the course of solving the problem, 3 hypotheses were put forward and implemen
 
 2 Hypothesis: use BERT model and "smart" vocabulary on test dataset to detoxify it.
 
-Final solution: Take the least toxic option is selected from the two predicted data sets and saved to final solution dataset.
+Final solution: Take the least toxic option from the two predicted data sets and saved to final solution dataset.
 
 ![Compare toxicity level of difference algorithms](https://github.com/polinaLesak/text-detoxification/blob/master/reports/figures/compare_toxicity.png)
 
