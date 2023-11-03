@@ -35,6 +35,7 @@ To download and prepare test and train datasets use this code:
 ### Making predictions
 
 First clone repository:
+
 `git clone https://github.com/polinaLesak/text-detoxification.git`
 
 Install requirements:
