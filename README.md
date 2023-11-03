@@ -24,6 +24,15 @@ ref_tox - toxicity level of BERT-translated text
 ref_tox - toxicity level of reference text
 ## Main processes
 
+### Installation
+
+First clone repository:
+
+`git clone https://github.com/polinaLesak/text-detoxification.git`
+
+Install requirements:
+
+`pip install -r text-detoxification/requirements.txt`
 
 ### Transforming data
 
@@ -34,13 +43,6 @@ To download and prepare test and train datasets use this code:
 
 ### Making predictions
 
-First clone repository:
-
-`git clone https://github.com/polinaLesak/text-detoxification.git`
-
-Install requirements:
-
-`pip install -r text-detoxification/requirements.txt`
 
 To make predictions using simple vocab:
 
