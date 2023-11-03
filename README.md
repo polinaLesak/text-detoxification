@@ -34,13 +34,20 @@ To download and prepare test and train datasets use this code:
 
 ### Making predictions
 
+First clone repository:
+`git clone https://github.com/polinaLesak/text-detoxification.git`
+
+Install requirements:
+
+`pip install -r text-detoxification/requirements.txt`
+
 To make predictions using simple vocab:
 
-`python ./src/models/vocab_predict.py`
+`python text-detoxification/src/models/vocab_predict.py`
 
 To make prediction using "smart" vocab and BERT model:
 
-`python ./src/models/condbert_predict.py`
+`python text-detoxification/src/models/condbert_predict.py`
 
 
 
